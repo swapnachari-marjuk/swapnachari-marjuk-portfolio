@@ -1,0 +1,97 @@
+.animated-section {
+  opacity: 0;
+  transition: all var(--animation-duration, 0.8s) ease-out;
+  transition-delay: var(--animation-delay, 0s);
+}
+
+.animated-section.animate {
+  opacity: 1;
+}
+
+/* Fade Up Animation */
+.animated-section.fade-up {
+  transform: translateY(30px);
+}
+
+.animated-section.fade-up.animate {
+  transform: translateY(0);
+}
+
+/* Fade In Animation */
+.animated-section.fade-in {
+  transform: none;
+}
+
+.animated-section.fade-in.animate {
+  transform: none;
+}
+
+/* Slide Left Animation */
+.animated-section.slide-left {
+  transform: translateX(-30px);
+}
+
+.animated-section.slide-left.animate {
+  transform: translateX(0);
+}
+
+/* Slide Right Animation */
+.animated-section.slide-right {
+  transform: translateX(30px);
+}
+
+.animated-section.slide-right.animate {
+  transform: translateX(0);
+}
+
+/* Scale In Animation */
+.animated-section.scale-in {
+  transform: scale(0.95);
+}
+
+.animated-section.scale-in.animate {
+  transform: scale(1);
+}
+
+/* Fade Up Scale Animation */
+.animated-section.fade-up-scale {
+  transform: translateY(20px) scale(0.98);
+}
+
+.animated-section.fade-up-scale.animate {
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger Animation Support */
+.animated-section.stagger-1 {
+  --animation-delay: 0.1s;
+}
+
+.animated-section.stagger-2 {
+  --animation-delay: 0.2s;
+}
+
+.animated-section.stagger-3 {
+  --animation-delay: 0.3s;
+}
+
+.animated-section.stagger-4 {
+  --animation-delay: 0.4s;
+}
+
+.animated-section.stagger-5 {
+  --animation-delay: 0.5s;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animated-section {
+    transition: opacity 0.3s ease-out;
+    transform: none !important;
+  }
+  
+  .animated-section.animate {
+    opacity: 1;
+    transform: none !important;
+  }
+}
