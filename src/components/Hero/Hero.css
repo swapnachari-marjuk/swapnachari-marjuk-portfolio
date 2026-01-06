@@ -74,6 +74,10 @@
     text-align: center;
   }
   
+  .hero-description {
+    margin: 0 auto;
+  }
+
   .hero-image {
     order: -1;
   }

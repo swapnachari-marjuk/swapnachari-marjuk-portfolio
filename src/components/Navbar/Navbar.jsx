@@ -1,39 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBars, FaTimes, FaDownload } from "react-icons/fa";
 import "./Navbar.css";
 
+const sections = ["home", "about", "skills", "projects", "contact"];
+
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
-  const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    // 🔹 Navbar scroll effect
+    const onScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      const sections = ["home", "about", "skills", "projects", "contact"];
-      const scrollPosition = window.scrollY + 120;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
+    window.addEventListener("scroll", onScroll);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // 🔹 Intersection Observer (MAIN FIX)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-40% 0px -40% 0px",
+      }
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
   };
 
@@ -42,13 +52,12 @@ const Navbar = () => {
       <div className="nav-container">
         <div className="nav-logo">Ahmad Marjuk</div>
 
-        {/* Hamburger */}
         <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FaTimes /> : <FaBars />}
         </div>
 
         <ul className={`nav-menu ${menuOpen ? "open" : ""}`}>
-          {["home", "about", "skills", "projects", "contact"].map((item) => (
+          {sections.map((item) => (
             <li key={item}>
               <button
                 className={activeSection === item ? "active" : ""}
@@ -59,11 +68,8 @@ const Navbar = () => {
             </li>
           ))}
 
-          {/* Resume Button */}
           <li>
-            <button
-              className="resume-btn"
-            >
+            <button className="resume-btn">
               <FaDownload /> Resume
             </button>
           </li>
