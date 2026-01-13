@@ -69,9 +69,9 @@ const Navbar = () => {
           ))}
 
           <li>
-            <button className="resume-btn">
+            <a href="./marjuk_resume.pdf"  download className="resume-btn">
               <FaDownload /> Resume
-            </button>
+            </a>
           </li>
         </ul>
       </div>

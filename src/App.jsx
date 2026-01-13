@@ -6,7 +6,7 @@ import SocialLinks from './components/SocialLinks/SocialLinks';
 import Hero from './components/Hero/Hero';
 import About from './components/About/About';
 import Skills from './components/Skills/Skills';
-import Projects from './components/Projects./Projects';
+import Projects from './components/Projects/Projects';
 import Contact from './components/Contact/Contac';
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
@@ -22,9 +22,7 @@ function App() {
       {isLoading && <LoadingWelcome onLoadingComplete={handleLoadingComplete} />}
 
       <div className={`main-content ${isLoading ? 'hidden' : 'visible'}`}>
-        {/* <AnimatedSection animation="fade-in" duration={0.6}> */}
         <Navbar />
-        {/* </AnimatedSection> */}
 
         <main>
           <AnimatedSection animation="fade-up" delay={0.3}>

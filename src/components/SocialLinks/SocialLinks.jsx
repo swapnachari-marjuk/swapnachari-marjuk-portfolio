@@ -23,7 +23,7 @@ const SocialLinks = () => {
     },
     {
       name: "Facebook",
-      url: "https://www.facebook.com/ahmad.marjuk.869863",
+      url: "https://www.facebook.com/ahmad.marjuk.dev",
       icon: (
         <LuFacebook />
       ),
