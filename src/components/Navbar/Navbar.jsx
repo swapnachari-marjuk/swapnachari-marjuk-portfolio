@@ -69,7 +69,7 @@ const Navbar = () => {
           ))}
 
           <li>
-            <a href="./marjuk_resume.pdf"  download className="resume-btn">
+            <a href="/marjuk-resume-2026.pdf"  download className="resume-btn">
               <FaDownload /> Resume
             </a>
           </li>
